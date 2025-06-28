@@ -7,7 +7,7 @@ from midiutil import MIDIFile
 from utils import extract_features, describe_molecule, generate_music, explain_music_mapping
 
 app = Flask(__name__, static_folder="frontend")
-CORS(app)
+CORS(app, origins=["https://molecule-dj-frontend-r6ny8h0jj-aashi-guptas-projects-c296b8f3.vercel.app"])
 
 model = tf.keras.models.load_model("molecule_dj_model_full.keras")
 with open("scaler_full.pkl", "rb") as f:
