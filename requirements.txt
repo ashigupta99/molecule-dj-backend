@@ -1,7 +1,7 @@
 numpy
 pandas
 rdkit
-tensorflow
+tensorflow==2.16.1
 scikit-learn
 flask
 flask_cors
