@@ -47,6 +47,10 @@ def generate():
         "midi_url": f"/get-midi/{os.path.basename(temp_file.name)}"
     })
 
+@app.route("/ping")
+def ping():
+    return "pong", 200
+
 @app.route("/get-midi/<filename>")
 def get_midi(filename):
     path = os.path.join(".", filename)
