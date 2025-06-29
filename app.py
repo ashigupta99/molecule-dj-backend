@@ -15,10 +15,6 @@ model = tf.keras.models.load_model("molecule_dj_model_full.keras")
 with open("scaler_full.pkl", "rb") as f:
     scaler = pickle.load(f)
 
-# Ping for Render check
-@app.route("/ping")
-def ping():
-    return "pong", 200
 
 # Music Generation
 # @app.route("/generate", methods=["POST"])
