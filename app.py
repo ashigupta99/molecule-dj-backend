@@ -21,31 +21,43 @@ def ping():
     return "pong", 200
 
 # Music Generation
+# @app.route("/generate", methods=["POST"])
+# def generate():
+#     data = request.get_json()
+#     smiles = data.get("smiles", "")
+#     features = extract_features(smiles)
+
+#     if features is None:
+#         return jsonify({"error": "Invalid SMILES"}), 400
+
+#     notes = generate_music(model, smiles, features)
+#     explanation = explain_music_mapping(smiles, features, notes)
+
+#     temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".mid", dir=".")
+#     midi = MIDIFile(1)
+#     midi.addTempo(0, 0, 120)
+#     for i, note in enumerate(notes):
+#         midi.addNote(0, 0, note, i * 0.5, 1, 100)
+#     with open(temp_file.name, "wb") as f:
+#         midi.writeFile(f)
+
+#     return jsonify({
+#         "notes": notes,
+#         "explanation": explanation,
+#         "midi_url": f"/get-midi/{os.path.basename(temp_file.name)}"
+#     })
+
+
+
 @app.route("/generate", methods=["POST"])
 def generate():
-    data = request.get_json()
-    smiles = data.get("smiles", "")
-    features = extract_features(smiles)
-
-    if features is None:
-        return jsonify({"error": "Invalid SMILES"}), 400
-
-    notes = generate_music(model, smiles, features)
-    explanation = explain_music_mapping(smiles, features, notes)
-
-    temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".mid", dir=".")
-    midi = MIDIFile(1)
-    midi.addTempo(0, 0, 120)
-    for i, note in enumerate(notes):
-        midi.addNote(0, 0, note, i * 0.5, 1, 100)
-    with open(temp_file.name, "wb") as f:
-        midi.writeFile(f)
-
     return jsonify({
-        "notes": notes,
-        "explanation": explanation,
-        "midi_url": f"/get-midi/{os.path.basename(temp_file.name)}"
+        "notes": [60, 62, 64, 65, 67],
+        "explanation": "Dummy test response.",
+        "midi_url": "/get-midi/test.mid"
     })
+
+
 
 # Serve generated MIDI
 @app.route("/get-midi/<filename>")
