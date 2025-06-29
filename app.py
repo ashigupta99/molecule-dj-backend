@@ -65,6 +65,11 @@ def get_midi(filename):
     path = os.path.join(".", filename)
     return send_file(path, as_attachment=True, download_name="generated.mid")
 
+@app.route("/ping")
+def ping():
+    return "pong"
+
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
